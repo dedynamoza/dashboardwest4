@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard West 4</title>
+
+  <!-- Google Font untuk tampilan modern -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    /* === STYLE DASAR LAYOUT === */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(26, 42, 83, 0.8), rgba(26, 42, 83, 0.8)), url('Analyst Examining Data on Futuristic Dashboard Interface.jpeg');
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 40px 0 20px;
+      font-weight: 200;
+      letter-spacing: 2px;
+      color: #f8f9fa;
+    }
+
+   /* === WRAPPER CARD === */
+   .card-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* === CARD === */
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      width: 180px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    /* Efek hover floating */
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1em;
+      color: #fefefe;
+    }
+
+    /* === MENU YANG AKAN MUNCUL SAAT CARD DIKLIK === */
+    .submenu {
+      margin-top: 5px;
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .submenu button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 5px 8px;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: 100;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .submenu button:hover {
+      background: #007bb8;
+    }
+
+    /* === AREA IFRAME UNTUK MENAMPILKAN EMBED === */
+    .iframe-container {
+      margin-top: 40px;
+      width: 100%;
+      height: 85vh;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      background: #111;
+      position: relative;
+    }
+
+    .iframe-container.fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      z-index: 9999;
+      margin-top: 0;
+    }
+
+    .fullscreen-btn, .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 10;
+    }
+
+    .close-btn {
+      display: none;
+    }
+
+    .iframe-container.fullscreen .close-btn {
+      display: block;
+    }
+
+    .iframe-container.fullscreen .fullscreen-btn {
+      display: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* === ANIMASI MUNCULNYA SUBMENU === */
+    .fade-in {
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>DASHBOARD WEST 4</h1>
+
+  <!-- === CARD CONTAINER === -->
+  <div class="card-container">
+    <!-- CARD 1: MARKETING -->
+    <div class="card" onclick="toggleSubmenu('marketing')">
+      <h2>Marketing West 4</h2>
+      <div class="submenu" id="submenu-marketing">
+        <button onclick="openEmbed(event, 'https://lookerstudio.google.com/embed/reporting/3d99751e-1c47-4777-833e-21aa30dbbbff/page/vlKYF')">ATL</button>
+        <button onclick="openEmbed(event, 'https://lookerstudio.google.com/embed/reporting/3d99751e-1c47-4777-833e-21aa30dbbbff/page/p_e9zaocwawd')">Event</button>
+      </div>
+    </div>
+
+    <!-- CARD 2: SALES -->
+    <div class="card" onclick="toggleSubmenu('sales')">
+      <h2>Sales West 4</h2>
+      <div class="submenu" id="submenu-sales">
+        <button onclick="openEmbed(event, 'https://lookerstudio.google.com/embed/reporting/4b8a1e9e-96c2-4d48-90bf-836c706f2a1e/page/wmKpD')">Summary B2B</button>
+        <button onclick="openEmbed(event, 'https://lookerstudio.google.com/embed/reporting/4b8a1e9e-96c2-4d48-90bf-836c706f2a1e/page/p_gf0n7sxqid')">Summary B2C</button>
+        <button onclick="openEmbed(event, 'https://lookerstudio.google.com/embed/reporting/4b8a1e9e-96c2-4d48-90bf-836c706f2a1e/page/p_7nzuuqg7dd')">Store Performance</button>
+        <button onclick="openEmbed(event, 'https://agendawest4.vercel.app/')">Agenda</button>
+      </div>
+    </div>
+
+    <!-- CARD 3: OPERATION -->
+    <div class="card" onclick="toggleSubmenu('operation')">
+      <h2>Operation West 4</h2>
+      <div class="submenu" id="submenu-operation">
+        <button onclick="openEmbed(event, 'https://lookerstudio.google.com/embed/reporting/68503516-8464-4da7-ba2b-f51e11250f0b/page/p_kp2wxkbnod')">Operation West Territory 4</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- === IFRAME UNTUK MENAMPILKAN HASIL EMBED === -->
+  <div class="iframe-container" id="iframeContainer">
+    <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Full Page"><i class="fas fa-expand"></i></button>
+    <button class="close-btn" onclick="toggleFullscreen()" title="Close"><i class="fas fa-times"></i></button>
+    <iframe id="embedFrame" src="" allowfullscreen></iframe>
+  </div>
+
+  <!-- === SUARA KLIK === -->
+  <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_36ab4b5d63.mp3?filename=click-124467.mp3"></audio>
+
+  <script>
+    // === FUNGSI: Toggle submenu muncul/sembunyi saat card diklik ===
+    function toggleSubmenu(section) {
+      const submenu = document.getElementById(`submenu-${section}`);
+      const allSubmenus = document.querySelectorAll('.submenu');
+
+      // Tutup semua submenu lain
+      allSubmenus.forEach(menu => {
+        if (menu !== submenu) menu.style.display = 'none';
+      });
+
+      // Tampilkan atau sembunyikan submenu yang diklik
+      if (submenu.style.display === 'flex') {
+        submenu.style.display = 'none';
+      } else {
+        submenu.style.display = 'flex';
+        submenu.classList.add('fade-in');
+      }
+
+      // Mainkan suara klik
+      playClickSound();
+    }
+
+    // === FUNGSI: Ganti tampilan iframe saat menu submenu diklik ===
+    function openEmbed(event, url) {
+      event.stopPropagation(); // Mencegah card ikut toggle
+      document.getElementById('embedFrame').src = url;
+      playClickSound();
+    }
+
+    // === FUNGSI: Mainkan efek suara klik ===
+    function playClickSound() {
+      const clickSound = document.getElementById('clickSound');
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
+
+    // === FUNGSI: Toggle full screen mode ===
+    function toggleFullscreen() {
+      const container = document.getElementById('iframeContainer');
+      container.classList.toggle('fullscreen');
+    }
+  </script>
+</body>
+</html>
